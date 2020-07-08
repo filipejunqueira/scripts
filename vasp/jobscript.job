@@ -1,0 +1,133 @@
+#!/bin/bash -l
+
+# Force bash as the executing shell.
+#$ -S /bin/bash
+
+#$ -P Gold
+#$ -A KCL_Kantorovich
+
+# Select the MPI parallel environment and 24 processes.
+#$ -pe mpi 24
+
+# Request wallclock time (format hours:minutes:seconds).
+#$ -l h_rt=01:10:00
+
+# Request RAM per process (it is per CORE and not per JOB)
+#$ -l mem=1G
+
+# Request gigabytes of TMPDIR space per node (default is 10 GB)
+#$ -l tmpfs=10G
+
+# Set the name of the job.
+#$ -N vaspJob
+
+# Set the working directory 
+#$ -wd /home/mmm0540/calculations/vasp/gaAs/e_volume
+
+# To restrict a job to newer nodes only ( uncomment)
+# #$ -ac allow=LMNOPQSTU
+
+# cd /home/mmm0540/calculations/vasp/gaAs/e_volume
+
+VASP_STD=/home/mmm0540/src/vasp.5.4.1/vasp_std
+VASP_GAM=/home/mmm0540/src/vasp.5.4.1/vasp_gam
+BIN_VASP=$VASP_STD
+
+CWD=$(pwd)
+folders=$(ls -d adatoms*/ )
+first_folder=true
+i=1  
+tempdir=temp_CONTCAR
+mkdir $tempdir
+cd $tempdir
+tempCWD=$(pwd)
+cd $CWD
+
+#If it is the first interation we need to copy the POSCAR.surface. If its any other we need to copy the CONTCAR file from the previous folder
+
+for f in $folders; do   
+   
+  if [$first_folder = true]
+  then 
+  	mv POSCAR.surface $f
+ 	cd $f
+  	mv POSCAR.surface CONCAR.$i
+	 
+        #Now we need to create a new POSCAR file from POSCAR.$i which will add an atom at some X position
+	cat  > temp.tetr << EOF
+	
+input_file=${1:-POSCAR.$i}
+8
+$input_file
+M
+An
+An
+Aa
+#atom Chemical element Species
+Ga
+#Atom position
+0.00000   1.43042   9.56874
+S
+8
+POSCAR.$i
+c
+Q
+Q
+Q
+
+EOF
+	tetr < temp.tetr
+	rm temp.tetr
+	#tetr < temp_tetr 2&> /dev/null
+	
+	#RUN THE CALCULATION FOR THE FIRST TIME
+
+	gerun $BIN_VASP
+
+	#Once the calculation is done we copy the CONTCAR file to a temporary directory already created at the "mummy" folder.  	
+	cp POSCAR.$i $tempCWD
+	cd $CWD
+	first_folder=false
+	i=$($i+1)
+  else  
+	cd $tempCWD
+	mv POSCAR.$($i-1) POSCAR.$i
+        mv $tempCWD $f
+	cd $f
+ 	#Now we need to create a new POSCAR file from POSCAR.$i which will add an atom at some X position 
+	cat  > temp.tetr << EOF
+	
+input_file=${1:-POSCAR.$i}
+8
+$input_file
+M
+An
+An
+Aa
+#atom Chemical element Species
+Ga
+#Atom position
+0.00000   1.43042   9.56874
+S
+8
+POSCAR.$i
+c
+Q
+Q
+Q
+
+EOF
+	tetr < temp.tetr
+	rm temp.tetr
+	#tetr < temp_tetr 2&> /dev/null
+	
+	#RUN THE CALCULATION FOR THE ith TIME
+	gerun $BIN_VASP
+	#Once the calculation is done we copy the CONTCAR file to a temporary directory already created at the "mummy" folder.  	
+	cp POSCAR.$i $tempCWD
+	cd $CWD
+	i=$($i+1)
+  	 
+ fi  
+
+done

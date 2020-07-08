@@ -1,0 +1,8 @@
+IP_STR=$(hostname -I)
+IP_PUBLIC=$(dig +short myip.opendns.com @resolver1.opendns.com)
+
+
+echo "Local IP: " $IP_STR
+echo "Public IP:  " $IP_PUBLIC
+
+#tobecontinued....
