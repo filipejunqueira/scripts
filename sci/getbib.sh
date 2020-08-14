@@ -12,3 +12,9 @@ fi
 
 # Check crossref.org for the bib citation.
 curl -s "http://api.crossref.org/works/$doi/transform/application/x-bibtex" -w "\\n"
+
+
+
+
+
+

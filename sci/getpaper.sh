@@ -38,5 +38,6 @@ echo "Found link: $link"
 article=$(getbib $doi | grep -oP '\@article\{\K[^,]+')
 month=$(getbib $doi | grep -oP 'month = \{\K[^}]+')
 curl -s -L $link --output $article$month.pdf
+echo "paper $article$month.pdf has been downloaded!"
 
 
