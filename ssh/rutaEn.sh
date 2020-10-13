@@ -5,7 +5,8 @@
 CWD=$(pwd)
 GRAVITY_PATH="/mnt/scratch/users/k_filipe"
 THOMAS_PATH="/home/mmm0540"
-BACKUP_PATH="/mnt/localbackup/david"
+YOUNG_PATH="/home/mmm0792"
+BACKUP_PATH="/mnt/localbackup/filipe"
 LOCAL_PATH=$HOME
 
 if [[ $1 == "" ]]; then  
@@ -20,14 +21,18 @@ if [ $1 == 'gravity' ]; then
 elif [ $1 == 'thomas' ]; then 
    TEMP=${CWD/$LOCAL_PATH/}
    REMOTE_PATH=thomas:${THOMAS_PATH}$TEMP/
+elif [ $1 == 'young' ]; then 
+   TEMP=${CWD/$LOCAL_PATH/}
+   REMOTE_PATH=young:${YOUNG_PATH}$TEMP/
 elif [ $1 == 'backup' ]; then 
    TEMP=${CWD/$LOCAL_PATH/}
    REMOTE_PATH=${BACKUP_PATH}$TEMP/
-else 
+else
    echo Sorry, server not known
    echo try one of the followings:
    echo - gravity
    echo - thomas
+   echo - young
    echo - backup
    exit 1
 fi

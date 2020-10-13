@@ -3,6 +3,7 @@
 CWD=$(pwd)
 GRAVITY_PATH="/mnt/scratch/users/k1472185/"
 THOMAS_PATH="/home/mmm0540/"
+YOUNG_PATH="/home/mmm0792"
 LOCAL_PATH=$HOME
 
 EXCLUDE_FILE=${LOCAL_PATH}/scripts/ssh/exclude_files.dat
@@ -12,6 +13,7 @@ if [[ $1 == "" ]]; then
     echo "Please, choose a remote server"
     exit 1
 fi
+
 # work out the paths
 if [ $1 == 'gravity' ]; then 
    TEMP=${CWD/$LOCAL_PATH/}
@@ -19,10 +21,15 @@ if [ $1 == 'gravity' ]; then
 elif [ $1 == 'thomas' ]; then 
    TEMP=${CWD/$LOCAL_PATH/}
    REMOTE_PATH=thomas:${THOMAS_PATH}$TEMP/
+elif [ $1 == 'young' ]; then 
+   TEMP=${CWD/$LOCAL_PATH/}
+   REMOTE_PATH=young:${YOUNG_PATH}$TEMP/
+
 else 
    echo Sorry, server not known
    echo "  - gravity"
    echo "  - thomas"
+   echo "  - young"
    exit 1
 fi
 

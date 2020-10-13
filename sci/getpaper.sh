@@ -18,15 +18,15 @@ urlencode() {
 
 doi="$1"
 echo "Download for doi: $(urlencode $doi)"
-link=$(curl -s -L 'https://sci-hub.tw/' --compressed \
+link=$(curl -s -L 'https://sci-hub.st/' --compressed \
  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0' \
  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
  -H 'Accept-Language: en-US,en;q=0.5' \
  -H 'Content-Type: application/x-www-form-urlencoded' \
- -H 'Origin: https://sci-hub.tw' \
+ -H 'Origin: https://sci-hub.st' \
  -H 'DNT: 1' \
  -H 'Connection: keep-alive' \
- -H 'Referer: https://sci-hub.tw/' \
+ -H 'Referer: https://sci-hub.st/' \
  -H 'Cookie: __ddg1=SFEVzNPdQpdmIWBwzsBq; session=45c4aaad919298b2eb754b6dd84ceb2d; refresh=1588795770.5886; __ddg2=6iYsE2844PoxLmj7' \
  -H 'Upgrade-Insecure-Requests: 1' \
  -H 'Pragma: no-cache' \

@@ -23,6 +23,7 @@ fi
 CWD=$(pwd)
 GRAVITY_PATH="/mnt/scratch/users/k_filipe/"
 THOMAS_PATH="/home/mmm0540"
+YOUNG_PATH="/home/mmm0792"
 LOCAL_PATH=$HOME
 
 # List of files excluded to be uploaded/downloaded
@@ -34,6 +35,7 @@ if [[ $CLUSTER == "" ]]; then
     echo "Please, choose a remote server:"
     echo "  - gravity"
     echo "  - thomas"
+    echo "  - young"
     exit 1
 fi
 
@@ -44,10 +46,14 @@ if [ $CLUSTER == 'gravity' ]; then
 elif [ $CLUSTER == 'thomas' ]; then 
    TEMP=${CWD/$LOCAL_PATH/}
    REMOTE_PATH=${THOMAS_PATH}$TEMP/
+elif [ $CLUSTER == 'young' ]; then 
+   TEMP=${CWD/$LOCAL_PATH/}
+   REMOTE_PATH=${YOUNG_PATH}$TEMP/
 else 
    echo Sorry, server not known. Choose between:
    echo "  - gravity"
    echo "  - thomas"
+   echo "  - young"
    exit 1
 fi
 
