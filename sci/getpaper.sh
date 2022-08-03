@@ -18,12 +18,12 @@ urlencode() {
 
 doi="$1"
 echo "Download for doi: $(urlencode $doi)"
-link=$(curl -s -L 'https://sci-hub.st/' --compressed \
+link=$(curl -s -L 'https://sci-hub.se/' --compressed \
  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:75.0) Gecko/20100101 Firefox/75.0' \
  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' \
  -H 'Accept-Language: en-US,en;q=0.5' \
  -H 'Content-Type: application/x-www-form-urlencoded' \
- -H 'Origin: https://sci-hub.st' \
+ -H 'Origin: https://sci-hub.do' \
  -H 'DNT: 1' \
  -H 'Connection: keep-alive' \
  -H 'Referer: https://sci-hub.st/' \

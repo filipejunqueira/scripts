@@ -1,0 +1,37 @@
+! make Capslock the "Mode_switch" key
+clear Lock
+
+! All Mod must be cleared
+clear Mod1
+clear Mod2
+clear Mod3
+clear Mod4
+clear Mod5
+
+! clearning current Caps_Lock assigment and assigning it new one
+keycode 66 =
+keycode 66 = Mode_switch
+
+! setting all the modification keys
+add Mod1 = Alt_L Alt_R Meta_L
+add Mod2 = Num_Lock
+add Mod3 = Mode_switch
+add Mod4 = Super_L Super_R Hyper_R
+
+! Clear must be done before configuring it
+keycode 31 =
+keycode 44 =
+keycode 45 =
+keycode 46 =
+
+! Configuration (first column normal type, second with shift and second with Mod_switch)
+keycode 31 = i I Up
+keycode 44 = j J Left
+keycode 45 = k K Down
+keycode 46 = l L Right
+
+! Clearing the arrow keys and some functional keys like home
+keycode 111 =
+keycode 113 =
+keycode 114 =
+keycode 116 =

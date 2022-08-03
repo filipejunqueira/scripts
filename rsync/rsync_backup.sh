@@ -1,7 +1,7 @@
 #!/bin/bash
-options_rsync='-ahHAX --super'
-pwd_final="/home/captainbroccoli/"
-pwd_origin="/media/captainbroccoli/old_pop/home/captainbroccoli/"
+options_rsync='-avhH --super --progress --delete'
+pwd_final="/media/captainbroccoli/HOME_DESKTOP"
+pwd_origin="/home/captainbroccoli/"
 
 while read p; do
 echo "Backing up $p to $pwd_final"

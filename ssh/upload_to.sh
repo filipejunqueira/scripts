@@ -4,7 +4,7 @@
 # To download the folder use the alternative script 'bajarDe'
 # Usage:
 # 
-#     subirA <cluster_name> ("optional extra options")
+#     upload_to <cluster_name> ("optional extra options")
 
 
 function work_out_remote_dir {
@@ -24,6 +24,7 @@ CWD=$(pwd)
 GRAVITY_PATH="/mnt/scratch/users/k_filipe/"
 THOMAS_PATH="/home/mmm0540"
 YOUNG_PATH="/home/mmm0792"
+AUGUSTA_PATH="/home/ppzfl"
 LOCAL_PATH=$HOME
 
 # List of files excluded to be uploaded/downloaded
@@ -36,6 +37,7 @@ if [[ $CLUSTER == "" ]]; then
     echo "  - gravity"
     echo "  - thomas"
     echo "  - young"
+    echo "  - augusta"
     exit 1
 fi
 
@@ -46,6 +48,9 @@ if [ $CLUSTER == 'gravity' ]; then
 elif [ $CLUSTER == 'thomas' ]; then 
    TEMP=${CWD/$LOCAL_PATH/}
    REMOTE_PATH=${THOMAS_PATH}$TEMP/
+elif [ $CLUSTER == 'augusta' ]; then
+   TEMP=${CWD/$LOCAL_PATH/}
+   REMOTE_PATH=${AUGUSTA_PATH}$TEMP/
 elif [ $CLUSTER == 'young' ]; then 
    TEMP=${CWD/$LOCAL_PATH/}
    REMOTE_PATH=${YOUNG_PATH}$TEMP/
@@ -54,6 +59,7 @@ else
    echo "  - gravity"
    echo "  - thomas"
    echo "  - young"
+   echo "  - augusta"
    exit 1
 fi
 
