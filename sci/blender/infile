@@ -1,0 +1,13 @@
+# Input/config file for crate_image.py to render .xyz with Blender
+# resx  1080
+# resy  1080
+resx  540
+resy  540
+format  PNG
+thickness_mode  ABSOLUTE
+thickness 0.3
+prefix tip_
+files_to_render 
+   ./out.xyz As-rich_ 
+   /home/captainbroccoli/calculations/vasp/au/tips/au_111_5L1F_v1/out.xyz  Au-term_
+end

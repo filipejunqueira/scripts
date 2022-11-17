@@ -1,0 +1,11 @@
+# resx = 720
+# resy = 480
+resx = 1080
+resy = 1080
+lens = 55
+format = 'PNG'
+thickness_mode = 'ABSOLUTE'
+thickness = 0.3
+prefix = 'test_'
+blend_file = '/home/captainbroccoli/scripts/sci/blender'
+files_to_render  = []
