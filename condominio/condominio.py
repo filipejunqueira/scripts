@@ -1,51 +1,36 @@
 import numpy as np
+import pandas as pd
+import scipy.stats as ss
 
-class Quadra:
+class Condominio:
     def __new__(cls, *args, **kwargs):
         return super().__new__(cls)
 
     def __init__(self, *args, **kwargs):
-        self.lista_lote = []
+        self.df_condominio = pd.DataFrame()
 
-    def add_lote(self, n_lote=1, area=250):
-        self.lista_lote.append([n_lote,area])
+    def add_lotes(self, csv_file):
+        self.df_condominio = pd.read_csv(csv_file, sep=",", header=0, index_col=0)
 
+    def total_area(self):
+        return self.df_condominio.area.sum()
 
-def check_quadra(df_block):
-    return df_block.Quadra
+    def total_lotes(self):
+        return len(self.df_condominio.index)
 
-def get_inicio_pag(df_block, df_vendas):
-    quadra = check_quadra(df_block)
-    return int(df_vendas[df_vendas.Quadra == quadra].Mes_de_Inicio_de_Venda.iloc[0])
+    def average_price(self):
+        return 750
 
-def get_fim_pag(df_block, df_vendas):
-    quadra = check_quadra(df_block)
-    fim = df_vendas[df_vendas.Quadra == quadra].Mes_de_Inicio_de_Venda.iloc[0] + df_vendas[df_vendas.Quadra == quadra].Periodo_de_Venda.iloc[0]
-    return int(fim)
+    def vgv(self):
+        area = self.total_area()
+        price = self.average_price()
+        return area*price
 
-
-def create_receita_minibatch(df_block, df_vendas):
-    quadra = check_quadra(df_block)
-    size_minibatch = df_vendas[df_vendas.Quadra == quadra].Periodo_de_Venda.iloc[0] + df_vendas[df_vendas.Quadra == quadra].Periodo_de_Financiamento.iloc[0]
-    receita_minibatch = np.zeros(size_minibatch)
-    #Boom de vendas inicial:
-    venda_inicial =  df_vendas[df_vendas.Quadra == quadra].Venda_Inicial.iloc[0]
-    preco_m2 = df_vendas[df_vendas.Quadra == quadra].Preco_m2.iloc[0]
-    area = df_block.Area
-    receita_minibatch[0] = venda_inicial*preco_m2*area
-    for i in range(1, size_minibatch):
-        #Entrada
-        receita_minibatch[i] = receita_minibatch[i] + (1-venda_inicial)*preco_m2*area/(size_minibatch-1)
-        #
-    flagcheck = round(preco_m2*area,4)
-    flagcheck2 = round(np.sum(receita_minibatch),4)
-    if flagcheck != flagcheck2:
-        print(f"ERRO, {flagcheck} vs {flagcheck2}")
-    else:
-        print("OK")
+def random_list(center=None, std= None, size=None, list_size=730):
+    x = np.arange(0, size)
+    prob = ss.norm.pdf(x, loc=center, scale=std)
+    prob = prob / prob.sum()  # normalize the probabilities so their sum is 1
+    prob_list = np.random.choice(x, list_size, p=prob)
+    return prob_list, x, prob
 
 
-    return receita_minibatch
-
-def create_custo_minibatch(quadra, df_vendas):
-    pass
