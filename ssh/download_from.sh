@@ -38,6 +38,14 @@ else
 fi
 
 echo Gathering files from: $REMOTE_PATH
-rsync -auvz $EXTRA_OPT --exclude-from=${EXCLUDE_FILE} ${REMOTE_PATH} ${CWD}/
+echo "Are you sure you want to do this? [Y/N]"
+read response
+
+if [ "$response" == "Y" ] || [ "$response" == "y" ]; then
+    rsync -auvz $EXTRA_OPT --exclude-from=${EXCLUDE_FILE} ${REMOTE_PATH} ${CWD}/
+else
+    echo "Canceling the download now"
+fi 
+
 echo 
 echo Remote path: $REMOTE_PATH

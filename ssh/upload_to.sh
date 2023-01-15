@@ -69,7 +69,15 @@ echo REMOTE PATH: $REMOTE_PATH
 work_out_remote_dir $CLUSTER $REMOTE_PATH
 
 echo Uploading files to: $CLUSTER:$REMOTE_PATH
+echo "Are you sure you want to do this [Y/N]?"
+read response
+
+if [ "$response" == "Y" ] || [ "$response" == "y" ]; then
 rsync -auvz --no-motd $EXTRA_OPT --exclude-from=${EXCLUDE_FILE} ${CWD}/ $CLUSTER:${REMOTE_PATH} 
+else
+echo "Canceling upload"
+fi
+
 # addJobToCalcs $CLUSTER 
 echo
 echo Remote path: $CLUSTER:$REMOTE_PATH

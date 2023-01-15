@@ -18,9 +18,9 @@ print(f" \n VGV = R${round(nature.vgv(),2)}, Area total = {round(nature.total_ar
 print(f"Comecando fluxo de caixa")
 
 ######### INPUT FINANCEIRO #####################
-taxa_desconto = 0.04
+taxa_desconto = 0.045
 taxa_inflacao = 0.10
-imposto = 0.25
+imposto = 0.06
 permuta = 0.32
 
 ######### INPUT VENDA ###########################
@@ -38,7 +38,7 @@ media = 700            #A implementar
 
 ######## INPUT CUSTOS ##########################
 fee_marketing = 0.03  #9_000_000
-inicio_pagamento_marketing = 0
+inicio_pagamento_marketing = 4
 periodo_marketing = 36
 fee_corretagem = 0.05
 fee_alienacao_fiduciaria = 0.05
@@ -49,7 +49,7 @@ adiantamento = (990_000+90000*3)*(1+taxa_inflacao)**(1/6)
 modo_pagamento_adiantamento = 3  #0 So receita, 1 Receita - custo de receita, 2 Receita - custo de receita - custo de marketing, 3 - Receita - Custo total
 inicio_pagamento_adiantamento = 3
 corretagem_bruno = 3352*(725)
-taxa_do_eu_nao_sabia = 0.90
+taxa_do_eu_nao_sabia = 1
 
 ######### INIT FLUXOS ##########################
 size_fluxo = 12*60
@@ -191,7 +191,7 @@ for lote in lotes_quinan.itertuples():
     start = lote.data_venda
     end = lote.financiamento + start + lote.parcelamento_entrada
     fluxo_receita[start:end] += fluxo_lote
-    fluxo_custo_receita[start] += corretagem + alienacao_fiduciaria
+    fluxo_custo_receita[start+1] += corretagem + alienacao_fiduciaria
 
 
 ############### Custos de Marketing #########################
@@ -307,7 +307,7 @@ erro_perplan = (area_perplan - 0.68*area_total)*lotes_perplan.preco_m2.mean()
 print(f"Erro Bruno = {locale.currency(round(erro_bruno,2), grouping=True)}")
 print(f"Erro Perplan = {locale.currency(round(erro_perplan,2), grouping=True)}")
 
-figure, ax = plt.subplots(figsize=(24,24))
+figure, ax = plt.subplots(figsize=(48,24))
 #plt.bar(x = np.arange(0,len(fluxo_receita)), height=fluxo_receita/3, label="Receita")
 plt.plot(fluxo_receita/3, label="Receita" , color="blue", alpha =0.8)
 ax.plot(fluxo/3, label="Fluxo", color = "green", linewidth=4, alpha = 0.8)
@@ -317,7 +317,7 @@ ax.plot(fluxo_custo_receita/3, label="Corretagem + Alienacao", color = "red",alp
 ax.plot(fluxo_custo_extraordinario/3, label="Custo Extraordinario", color = "pink",alpha=0.8)
 #ax.plot(fluxo_custo/3, label="Custo Total", color = "black",alpha=0.8)
 
-months_to_plot = 40
+months_to_plot = 120
 plt.xticks(np.arange(0, size_fluxo, 1))
 plt.yticks(np.arange(round(1.05*np.min(fluxo[:months_to_plot]/3),-3), 1.02*np.max(fluxo_receita[:months_to_plot]/3), step=10_000))
 plt.xlim([0,months_to_plot])
