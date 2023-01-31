@@ -7,7 +7,7 @@ entry_string = "entry1"
 prefix = f"i09-"
 entry_string = "entry1"
 detector = "ew4000"
-id = 93310
+id = 93341
 
 # if plot_all_flag is True, this will be ignored, if True only these will be plotted.
 folder_path = f"/home/{user}/i09_data/si15022-1/"

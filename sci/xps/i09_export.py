@@ -34,7 +34,7 @@ class data_square:
         self.names  = []
         self.noRegions = 0
         #self.model_dir = 'D:/Dropbox/Data_b/neural_network_test/nn_post_PS/training_out'
-        self.nixswDatadir = "C:/Users/dadun/Dropbox/XSW_tutorial/fpfpp"
+        self.nixswDatadir = "/home/captainbroccoli/i09_data/si-"
         self.nixswQparamFile = "q_param.txt"
         self.model_dir = 'C:/Users/dadun/Dropbox/Data/neural_network_test/Ryan/NN_for_DAD/NN_for_DAD/nets'
         self.model_dirPos = 'C:/Users/dadun/Dropbox/Data/neural_network_test/Ryan/NN_for_DAD/NN_for_DAD/nets'

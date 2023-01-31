@@ -17,7 +17,10 @@ def plot_xps_data(data_list, metadata_list):
         pass_energy = metadata_list[i]["pass_energy"]
         start_time = metadata_list[i]["start_time"].split("T")
         date = start_time[0]
-        time = start_time[1].split(".")[0]
+        try:
+            time = start_time[1].split(".")[0]
+        except:
+            time = ""
 
         figure_title = f"XPS Spectrum for {file_name}"
 
@@ -52,14 +55,14 @@ user = os.environ['USER']
 
 # INPUT: path to the nexus file############################################
 prefix = f"i09-"
-folder_path = f"/home/{user}/i09_data/si15022-1"
+folder_path = f"/home/{user}/i09_data/si15022-1/"
 
 # INPUT: Detector entry ############################################
 # This is necessary because the nexus file can have multiple entries
 
 
 plot_all_flag = True  # if True, all files in the folder will be plotted
-file_list = [237027]  # if plot_all_flag is True, this will be ignored, if True only these will be plotted.
+file_list = [93341]  # if plot_all_flag is True, this will be ignored, if True only these will be plotted.
 
 # INPUT: Graph  ####################################################
 figure_size = (16, 10)  # size
@@ -82,7 +85,17 @@ if plot_all_flag is True:
     list_files = sorted(list_files)
     for _fstring in list_files:
         if _fstring.endswith(".nxs"):
-            file_list.append(_fstring.strip(".nxs")[-6:])
+            #grabs everything from the first - to the last .nxs (could be -6 or -5)
+            print(_fstring)
+            try:
+
+                _temp_id = _fstring.strip(".nxs")
+                _temp_id = _temp_id.split("-")[1]
+                file_list.append(_temp_id)
+
+            except:
+                file_list.append(_fstring.strip(".nxs")[-6:])
+
 print(file_list)
 print(len(file_list))
 print(f"Files to be processed: {file_list}")
