@@ -18,8 +18,8 @@ print(f" \n VGV = R${round(nature.vgv(),2)}, Area total = {round(nature.total_ar
 print(f"Comecando fluxo de caixa")
 
 ######### INPUT FINANCEIRO #####################
-taxa_desconto = 0.045
-taxa_inflacao = 0.10
+taxa_desconto = 0.04
+taxa_inflacao = 0.11
 imposto = 0.06
 permuta = 0.32
 
@@ -33,23 +33,23 @@ center_parcelamento_entrada = 4
 std_parcelamento_entrada = 1.2
 
 lote_mais_barato = 650 #A implementar
-lote_mais_caro = 850   #A implementar
-media = 700            #A implementar
+lote_mais_caro = 750   #A implementar
+media = 900            #A implementar
 
 ######## INPUT CUSTOS ##########################
 fee_marketing = 0.03  #9_000_000
 inicio_pagamento_marketing = 4
 periodo_marketing = 36
-fee_corretagem = 0.05
-fee_alienacao_fiduciaria = 0.05
-despesas_extraordinarias = 0
+fee_corretagem = 0.06
+fee_alienacao_fiduciaria = 0.06
+despesas_extraordinarias = 0.01
 
 ########## OUTROS  #######################
-adiantamento = (990_000+90000*3)*(1+taxa_inflacao)**(1/6)
+adiantamento = (990_000+90000*5)*(1+taxa_inflacao)**(1/6)
 modo_pagamento_adiantamento = 3  #0 So receita, 1 Receita - custo de receita, 2 Receita - custo de receita - custo de marketing, 3 - Receita - Custo total
 inicio_pagamento_adiantamento = 3
 corretagem_bruno = 3352*(725)
-taxa_do_eu_nao_sabia = 1
+taxa_do_eu_nao_sabia = 0.95
 
 ######### INIT FLUXOS ##########################
 size_fluxo = 12*60
@@ -88,28 +88,28 @@ for i,parcela in enumerate(parcelamento_entrada_list):
         periodo_financiamento_list[i] = 24
         juros_list[i] = 0.0
         inadimplencia[i] = 0.05
-        preco_m2_list[i] = 700
+        preco_m2_list[i] = 650
 
     elif parcela == 2:
         entrada[i] = 0.15
         periodo_financiamento_list[i] = 36
         juros_list[i] = 0.0
         inadimplencia[i] = 0.05
-        preco_m2_list[i] = 700
+        preco_m2_list[i] = 650
 
     elif parcela == 3:
         entrada[i] = 0.2
         periodo_financiamento_list[i] = 36
         juros_list[i] = 0.00
         inadimplencia[i] = 0.05
-        preco_m2_list[i] = 700
+        preco_m2_list[i] = 650
 
     elif parcela >= 4:
         entrada[i] = 0.10
         periodo_financiamento_list[i] = 120
         juros_list[i] = 0.1
         inadimplencia[i] = 0.05
-        preco_m2_list[i] = 700
+        preco_m2_list[i] = 650
 
     else:
         raise ValueError(f"Parcela Error in {i}")

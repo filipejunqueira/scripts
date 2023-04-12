@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d32ce87d-ae1e-4444-9c27-42f533cf0cc2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SPMTools" beforeDir="false" afterPath="$PROJECT_DIR$/../SPMTools" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i09_export.py" beforeDir="false" afterPath="$PROJECT_DIR$/i09_export.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importnexus.py" beforeDir="false" afterPath="$PROJECT_DIR$/importnexus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inspect_nexus.py" beforeDir="false" afterPath="$PROJECT_DIR$/inspect_nexus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot_xps.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot_xps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/xps.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/xps.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/faces.npy" beforeDir="false" afterPath="$PROJECT_DIR$/faces.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot_res_auger_image.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot_res_auger_image.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vertices.npy" beforeDir="false" afterPath="$PROJECT_DIR$/vertices.npy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,20 +33,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/captainbroccoli/scripts/sci/xps/test.py",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "PyConsoleConfigurable.Python Console",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/captainbroccoli/scripts/sci/xps/plot_res_auger_image.py&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;PyConsoleConfigurable.Python Console&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="xps" is-module-sdk="true">
@@ -56,13 +56,15 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plot_xps">
+  <component name="RunManager" selected="Python.plot_res_auger_image">
     <configuration name="i09_export" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="xps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/defpy/bin/python" />
-      <option name="SDK_NAME" value="defpy" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -85,7 +87,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/defpy/bin/python" />
-      <option name="SDK_NAME" value="defpy" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -104,8 +105,10 @@
       <module name="xps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/defpy/bin/python" />
-      <option name="SDK_NAME" value="defpy" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -124,8 +127,33 @@
       <module name="xps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/defpy/bin/python" />
-      <option name="SDK_NAME" value="defpy" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot_res_auger_image.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="plot_res_auger_image" type="PythonConfigurationType" factoryName="Python">
+      <module name="xps" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/defpy/bin/python" />
+      <option name="SDK_NAME" value="Python 3.10 (defpy)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -144,8 +172,11 @@
       <module name="xps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/defpy/bin/python" />
-      <option name="SDK_NAME" value="defpy" />
+      <option name="SDK_NAME" value="Python 3.10 (defpy)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -164,8 +195,10 @@
       <module name="xps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/defpy/bin/python" />
-      <option name="SDK_NAME" value="defpy" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -187,6 +220,7 @@
       <item itemvalue="Python.i09_export" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.plot_xps" />
+      <item itemvalue="Python.plot_res_auger_image" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -203,6 +237,10 @@
       <workItem from="1675108712764" duration="4640000" />
       <workItem from="1675175205680" duration="128000" />
       <workItem from="1675180110957" duration="9489000" />
+      <workItem from="1677413946322" duration="1930000" />
+      <workItem from="1677416248860" duration="2210000" />
+      <workItem from="1677503588748" duration="8000" />
+      <workItem from="1678909597099" duration="12000" />
     </task>
     <servers />
   </component>

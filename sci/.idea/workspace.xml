@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="919f6916-6b07-43e7-8285-b0367299c752" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xps/import.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPMTools" beforeDir="false" afterPath="$PROJECT_DIR$/SPMTools" afterDir="false" />
-    </list>
+    <list default="true" id="919f6916-6b07-43e7-8285-b0367299c752" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +34,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/captainbroccoli/scripts/sci/xps/import.py",
+    "last_opened_file_path": "/home/captainbroccoli/scripts/condominio",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,6 +80,7 @@
       <workItem from="1674386089337" duration="17430000" />
       <workItem from="1674645084531" duration="137000" />
       <workItem from="1674645227766" duration="223000" />
+      <workItem from="1677321421095" duration="11000" />
     </task>
     <servers />
   </component>

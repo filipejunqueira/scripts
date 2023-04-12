@@ -63,7 +63,7 @@ class MidpointNormalize(colors.Normalize):
         return np.ma.masked_array(np.interp(value, x, y))
 
 
-def plot_auger_image(x,y,z, metadata_list, cmap="viridis", midpoint_norm = 0.5, vmin=10, vmax = 90, i0_corrected = True):
+def plot_auger_image(x,y,z, metadata_list, cmap="viridis", midpoint_norm = 0.5, vmin=10, vmax = 90, i0_corrected = True, less_text = False, heat_map_flag = True):
     for i, _ in enumerate(data_list):
         region = metadata_list[i]["region_name"]
         acquisition_mode = metadata_list[i]["acquisition_mode"]
@@ -80,7 +80,6 @@ def plot_auger_image(x,y,z, metadata_list, cmap="viridis", midpoint_norm = 0.5, 
 
         c = ax.pcolormesh(x,y,z, cmap=cmap, norm=MidpointNormalize(midpoint=midpoint_norm,vmin=vmin, vmax=vmax), shading='nearest')
 
-        ax.set_title(figure_title, fontsize=font_size)
         plt.xlabel("Energy [eV]", fontsize=font_size_label)
         plt.ylabel("Excitation Energy [eV]", fontsize=font_size_label)
         #plt.xticks(fontsize=font_size_label)
@@ -88,9 +87,9 @@ def plot_auger_image(x,y,z, metadata_list, cmap="viridis", midpoint_norm = 0.5, 
         #sns.lineplot(x=x, y=y, color="#845EC2")
         #sns.scatterplot(x=x, y=y, s=marker_size, edgecolor="#845EC2", facecolor="None", linewidth=edge_width, alpha=marker_transparency)
         if i0_corrected is True:
-            i0_corrected_string = "I0 Corrected"
+            i0_corrected_string = "I0_Corrected"
         else:
-            i0_corrected_string = "I0 Not Corrected"
+            i0_corrected_string = "I0_NOT_Corrected"
 
         text_string = (f"Region: {region} \n"
                        f"Pass Energy: {round(pass_energy, 2)} eV\n"
@@ -99,14 +98,22 @@ def plot_auger_image(x,y,z, metadata_list, cmap="viridis", midpoint_norm = 0.5, 
                        f"Date: {date}\n"
                        f"Time: {time}\n"
                        f"{i0_corrected_string}")
-        plt.annotate(text_string, xy=(0.65, 0.7), xycoords="axes fraction", fontsize=font_size_text, color="#808080", alpha=0.5)
+        if less_text is True:
+            less_text_string = f"NO_metadata"
+        else:
+            plt.annotate(text_string, xy=(0.65, 0.7), xycoords="axes fraction", fontsize=font_size_text, color="#808080", alpha=0.5)
+            ax.set_title(figure_title, fontsize=font_size)
+            less_text_string = f"WITH_metadata"
         ax.axis([x.min(), x.max(), y.min(), y.max()])
         #add color bar and set the limits of the colorbar manually from vmin to vmax
-        cb = fig.colorbar(c, ax=ax)
+        if heat_map_flag is True:
+            cb = fig.colorbar(c, ax=ax)
+            cb.set_label("Normalized Log [Arb. Units]", fontsize = font_size_label)
+            heat_map_string = f"WITH_colorbar"
+        else:
+            heat_map_string = f"NO_colorbar"
 
-        cb.set_label("Normalized Log [Arb. Units]", fontsize = font_size_label)
-
-        figure_name = f"{file_name.split('.nxs')[0]}_{region}_{i0_corrected_string}.png"
+        figure_name = f"{file_name.split('.nxs')[0]}_{region}_{i0_corrected_string}_{less_text_string}_{heat_map_string}_{energy_cutoff_string}_{excitation_energy_string}.png"
         plt.savefig(f"{save_path}{figure_name}", dpi=300, bbox_inches="tight")
         plt.show()
         plt.close()
@@ -123,14 +130,14 @@ user = os.environ['USER']
 
 # INPUT: path to the nexus file############################################
 prefix = f"i09-"
-folder_id = "si31574-2"
+folder_id = "si31574-1"
 folder_path = f"/home/{user}/i09-jan-2023-data/{folder_id}/"
 
 # INPUT: Detector entry ############################################
 # This is necessary because the nexus file can have multiple entries
 
 
-file_list = [237130]  # if plot_all_flag is True, this will be ignored, if True only these will be plotted.
+file_list = [236696]  # if plot_all_flag is True, this will be ignored, if True only these will be plotted.
 
 # INPUT: Graph  ####################################################
 figure_size = (16, 10)  # size
@@ -142,6 +149,10 @@ marker_size = 30
 edge_width = 0.8
 marker_transparency = 0.15
 save_path = f"/home/{user}/i09-jan-2023-data/{folder_id}/graphs/"
+less_text = True
+correct_for_i0 = False
+heat_map_flag = True
+
 ### Check if save_path exists, if not create it
 if not os.path.exists(save_path):
     os.makedirs(save_path)
@@ -182,10 +193,20 @@ for id in file_list:
     limit_max = 100
 
     energy_cutoff_min = 0
-    energy_cutoff_max = 2000
+    energy_cutoff_max = 230
     excitation_energy_min = 0
     excitation_energy_max = 500
-    correct_for_i0 = False
+
+    if energy_cutoff_max < max(energies) or energy_cutoff_min > min(energies):
+        energy_cutoff_string = f"Energy_cutoff_{energy_cutoff_min}and{energy_cutoff_max}_eV"
+    else:
+        energy_cutoff_string = f"Energy_cutoff_None"\
+
+    if excitation_energy_max < max(excitation_energy) or excitation_energy_min > min(excitation_energy):
+        excitation_energy_string = f"Excitation_energy_cutoff_{excitation_energy_min}and{excitation_energy_max}_eV"
+    else:
+        excitation_energy_string = f"Excitation_energy_cutoff_None"
+
 
     if correct_for_i0 is True:
         i0 = data_list[0]["i0"]
@@ -203,7 +224,7 @@ for id in file_list:
     z_min, z_max = np.min(z), np.max(z)
     z = ((z - z_min) / (z_max - z_min)) * 100
 
-    plot_auger_image(x, y, z, metadata_list, cmap=color_map, midpoint_norm=mid_point_norm, vmin=limit_min, vmax=limit_max, i0_corrected = correct_for_i0)
+    plot_auger_image(x, y, z, metadata_list, cmap=color_map, midpoint_norm=mid_point_norm, vmin=limit_min, vmax=limit_max, i0_corrected = correct_for_i0, less_text=less_text, heat_map_flag = heat_map_flag)
     #peaks = fit_peak(x,y)
     #subtract_background(x,y,peaks)
 
